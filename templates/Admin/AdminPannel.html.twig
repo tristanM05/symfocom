@@ -1,0 +1,37 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Tableau de bord | Symfocom{% endblock %}
+
+{% block body %}
+<div class="panel_main">
+    <div>
+        <h1 class="titlePanel">Tableau de bord</h1>
+        <p>
+            Bienvenue sur votre tableau de bord, {{ app.user.firstName }} ! Ici vous pouvez gérer entièrement votre boutique en ligne .
+        </p>
+        <div>
+            <img src="{{asset('images/Capture.png')}}" alt="">
+        </div>
+        <div id="divNavPanel">
+            <div class="navPanel">
+                <p class="iconNavPanel"><i class="fa-solid fa-cubes-stacked"></i></p>
+                <p class="pNavPanel">Produits</p>
+            </div>
+            <div class="navPanel">
+                <a href="" class="aNavPanel">
+                    <p class="iconNavPanel"><i class="fa-solid fa-cart-shopping"></i></p>
+                    <p class="pNavPanel">Commandes</p>
+                </a>
+            </div>
+            <div class="navPanel">
+                <p class="iconNavPanel"><i class="fa-solid fa-people-group"></i></p>
+                <p class="pNavPanel">Clients</p>
+            </div>
+            <div class="navPanel">
+                <p class="iconNavPanel"><i class="fa-solid fa-ticket"></i></p>
+                <p class="pNavPanel">Promotions</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

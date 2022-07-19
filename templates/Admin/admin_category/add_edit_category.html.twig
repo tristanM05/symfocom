@@ -1,0 +1,50 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Hello AdminCategoryController!{% endblock %}
+
+{% block body %}
+<div class="panel_main">
+    {% if editMode %}
+    <h1 class="titlePanel">Modification de la catégorie "{{category.title}}"</h1>
+    <p class="mb-5">Création ou modificartion d'une catégorie, vous pouvez y ajouter des sous-catégories.</p>
+    <a href="{{path('admin_subCategory_new')}}" class="adminBtn">Ajoutez une sous-catégorie</a>
+    {% else %}
+    <h1 class="titlePanel">Ajout d'une nouvelle catégorie</h1>
+    <p class="mb-5">Création ou modificartion d'une catégorie, vous pouvez y ajouter des sous-catégories.</p>
+    {% endif %}
+    <div class="divAddForm">
+        <div class="card cardAddEdit">
+            {{ form_start(form) }}
+            {{ form_row(form.title) }}
+            {{ form_row(form.description) }}
+            <button type="submit" class="btn adminBtn btn-block">Enregistrer</button>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+    <h1 class="titlePanel text-center mt-5">Sous-catégories liées</h1>
+    <div class="divAddForm">
+        <div class="card cardAddEdit">
+            <table class="table table-hover text-center">
+                <thead class="text-center">
+                    <tr>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for subCateg in subCategory %}
+                    <tr>
+                        <td>{{ subCateg.title }}</td>
+                        <td>
+                            <a href="{{ path('admin_category_edit', { 'id': subCateg.id }) }}"><i class="fa-solid fa-pen-clip editIcon"></i></a>
+                            <a href=""><i class="fa-solid fa-trash-can deleteIcon"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

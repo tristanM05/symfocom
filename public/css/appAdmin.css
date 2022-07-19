@@ -1,0 +1,138 @@
+@font-face {
+    font-family: "kanit";
+    src: url(../font/Kanit-Regular.ttf);
+}
+@font-face {
+    font-family: "stencilia2";
+    src: url(../font/Stencilia-Bold.ttf);
+}
+@font-face {
+    font-family: "avenir";
+    src: url(../font/Avenir\ Book.ttf);
+}
+/************** NAVADMIN **************/
+#navAdmin_main{
+    background-color: #1d212b;
+    width: 15%;
+    height: 939px;
+    font-family: kanit;
+    box-shadow: 10px 0px 10px rgb(90, 90, 90);
+}
+#logo_navAdmin{
+    color: white;
+    text-align: center;
+    margin: 20px;
+    font-size: 25px;
+}
+#hr_navAdmin{
+    border-top: 0.5px solid #86888d;
+    width: 100%;
+}
+.ulNavAdmin{
+    list-style-type: none;
+    padding: 10px;
+}
+.titleUlNavAdmin{
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+.liNavAdmin{
+    color: #86888d;
+    font-size: 14px;
+    margin-left: 10px;
+}
+/************** NAVADMIN **************/
+
+/************** PANEL **************/
+
+.adminBtn{
+    background-color: #4a408a;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+}
+.adminBtn:hover{
+    background-color: #6c5dcf;
+    color: white;
+    text-decoration: none;
+    transition: 0.5s;
+}
+.panel_main{
+    background-color: #f9f9f9;
+    width: 100%;
+    font-family: kanit;
+    margin: 20px;
+}
+.titlePanel{
+    color: #4a408a;
+}
+#divNavPanel{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+}
+.navPanel{
+    border: #86888d 1px solid;
+    border-radius: 10px;
+    justify-content: center;
+    margin-top: 40px;
+    display: flex;
+}
+.pNavPanel{
+    margin: 0;
+    padding: 10px;
+}
+.iconNavPanel{
+    color: #86888d;
+    margin: 0;
+    padding: 10px;
+}
+.aNavPanel{
+    text-decoration: none;
+    display: flex;
+    color: #86888d;
+}
+.aNavPanel:hover{
+    color: #86888d;
+}
+/************** PANEL **************/
+
+/************** CATEGORY **************/
+.category_main_content_list{
+    display: flex;
+    justify-content: center;
+    border: #86888d 0.5px solid;
+    border-radius: 10px;
+    box-shadow: 10px 5px 5px rgb(90, 90, 90);
+}
+#category_main_content_list table{
+    width: 60%;
+}
+.divAddForm{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+
+}
+.cardAddEdit{
+    background-color: #f9f9f9;
+    width: 60%;
+    padding: 20px;
+    box-shadow: 10px 10px 20px rgb(139, 139, 139);
+}
+.editIcon{
+    color: white;
+    background-color: #4a408a;
+    padding: 10px;
+    border-radius: 5px;
+}
+.deleteIcon{
+    color: white;
+    background-color: #b92222;
+    padding: 10px;
+    border-radius: 5px;
+}
+/************** CATEGORY **************/
