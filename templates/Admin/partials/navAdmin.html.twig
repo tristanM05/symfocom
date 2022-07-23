@@ -1,13 +1,13 @@
 <div id="navAdmin_main">
     <div>
-        <p id="logo_navAdmin">Symfocom</p>
+        <a href="{{path('admin_pannel')}}"><p id="logo_navAdmin">Symfocom</p></a>
         <hr id="hr_navAdmin">
     </div>
     <div class="mt-4">
         <ul class="ulNavAdmin">
             <p class="titleUlNavAdmin">CATALOGUE</p>
             <a href="{{path('admin_category')}}"><li class="liNavAdmin">Catégories</li></a>
-            <li class="liNavAdmin">Gestion des produits</li>
+            <a href="{{path('admin_article')}}"><li class="liNavAdmin">Gestion des produits</li></a>
             <li class="liNavAdmin">Gestion des stocks</li>
         </ul>
         <ul class="ulNavAdmin">

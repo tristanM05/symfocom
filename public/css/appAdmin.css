@@ -10,11 +10,16 @@
     font-family: "avenir";
     src: url(../font/Avenir\ Book.ttf);
 }
+html{
+    width: 100%;
+    height: 100%;
+}
+
 /************** NAVADMIN **************/
 #navAdmin_main{
     background-color: #1d212b;
     width: 15%;
-    height: 939px;
+    height: auto;
     font-family: kanit;
     box-shadow: 10px 0px 10px rgb(90, 90, 90);
 }
@@ -40,7 +45,7 @@
 .liNavAdmin{
     color: #86888d;
     font-size: 14px;
-    margin-left: 10px;
+    margin-left: 10px
 }
 /************** NAVADMIN **************/
 
@@ -63,6 +68,7 @@
 .panel_main{
     background-color: #f9f9f9;
     width: 100%;
+    height: auto;
     font-family: kanit;
     margin: 20px;
 }
@@ -102,14 +108,15 @@
 
 /************** CATEGORY **************/
 .category_main_content_list{
-    display: flex;
-    justify-content: center;
-    border: #86888d 0.5px solid;
-    border-radius: 10px;
+    border: #c5c6ca 0.5px solid;
+    border-radius: 15px;
     box-shadow: 10px 5px 5px rgb(90, 90, 90);
 }
 #category_main_content_list table{
     width: 60%;
+    border: #c5c6ca 0.5px solid;
+    border-radius: 15px;
+    box-shadow: 10px 5px 5px rgb(90, 90, 90);
 }
 .divAddForm{
     display: flex;
@@ -121,6 +128,7 @@
     background-color: #f9f9f9;
     width: 60%;
     padding: 20px;
+    border-radius: 15px;
     box-shadow: 10px 10px 20px rgb(139, 139, 139);
 }
 .editIcon{
@@ -131,8 +139,21 @@
 }
 .deleteIcon{
     color: white;
-    background-color: #b92222;
+    background-color: #1d212b;
     padding: 10px;
     border-radius: 5px;
+}
+.ligneVie{
+    display: flex;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.ligneVie a{
+    text-decoration: none;
+    color: #4a408a;
+}
+.separateur_ligneVie{
+    margin-left: 5px;
+    margin-right: 5px;
 }
 /************** CATEGORY **************/

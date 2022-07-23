@@ -30,19 +30,20 @@ class Category
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Articles::class, mappedBy="category")
-     */
-    private $articles;
-
-    /**
      * @ORM\OneToMany(targetEntity=SubCategory::class, mappedBy="category")
      */
     private $subCategories;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Articles::class, mappedBy="category")
+     * @ORM\JoinTable(name="articles_category")
+     */
+    private $articles;
+
     public function __construct()
     {
-        $this->articles = new ArrayCollection();
         $this->subCategories = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,36 +76,6 @@ class Category
     }
 
     /**
-     * @return Collection<int, Articles>
-     */
-    public function getArticles(): Collection
-    {
-        return $this->articles;
-    }
-
-    public function addArticle(Articles $article): self
-    {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
-            $article->setCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeArticle(Articles $article): self
-    {
-        if ($this->articles->removeElement($article)) {
-            // set the owning side to null (unless already changed)
-            if ($article->getCategory() === $this) {
-                $article->setCategory(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, SubCategory>
      */
     public function getSubCategories(): Collection
@@ -129,6 +100,33 @@ class Category
             if ($subCategory->getCategory() === $this) {
                 $subCategory->setCategory(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Articles>
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Articles $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Articles $article): self
+    {
+        if ($this->articles->removeElement($article)) {
+            $article->removeCategory($this);
         }
 
         return $this;

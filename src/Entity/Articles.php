@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArticlesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -68,14 +70,31 @@ class Articles
     private $isVisible;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="articles")
-     */
-    private $category;
-
-    /**
      * @ORM\ManyToOne(targetEntity=SubCategory::class, inversedBy="articles")
      */
     private $subCategory;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=ProductStatus::class, inversedBy="article")
+     */
+    private $productStatus;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="article", cascade={"persist"})
+     */
+    private $images;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="articles")
+     * @ORM\JoinTable(name="articles_category")
+     */
+    private $category;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+        $this->category = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -202,18 +221,6 @@ class Articles
         return $this;
     }
 
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
     public function getSubCategory(): ?SubCategory
     {
         return $this->subCategory;
@@ -222,6 +229,72 @@ class Articles
     public function setSubCategory(?SubCategory $subCategory): self
     {
         $this->subCategory = $subCategory;
+
+        return $this;
+    }
+
+    public function getProductStatus(): ?ProductStatus
+    {
+        return $this->productStatus;
+    }
+
+    public function setProductStatus(?ProductStatus $productStatus): self
+    {
+        $this->productStatus = $productStatus;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Images>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Images $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getArticle() === $this) {
+                $image->setArticle(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->category->contains($category)) {
+            $this->category[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        $this->category->removeElement($category);
 
         return $this;
     }

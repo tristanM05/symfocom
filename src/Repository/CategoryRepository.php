@@ -47,6 +47,15 @@ class CategoryRepository extends ServiceEntityRepository
         }
     }
 
+    public function findArticles($value){
+        return $this->createQueryBuilder('a')
+            ->join('a.articles', 'b')
+            ->where('a.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Category[] Returns an array of Category objects
     //  */

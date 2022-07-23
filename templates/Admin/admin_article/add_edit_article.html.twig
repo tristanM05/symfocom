@@ -1,0 +1,85 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Hello AdminCategoryController!{% endblock %}
+
+{% block body %}
+<div class="panel_main">
+    {% if editMode %}
+    <h1 class="titlePanel">Modification du produit "{{article.title}}"</h1>
+    <p class="mb-5">Création ou modificartion d'une catégorie, vous pouvez y ajouter des sous-catégories.</p>
+    {% else %}
+    <h1 class="titlePanel">Ajout d'un nouveau produit</h1>
+    <p class="mb-5">Création ou modificartion d'un produits.</p>
+    {% endif %}
+    <div class="divAddForm">
+        <div class="card cardAddEdit">
+            {{ form_start(form) }}
+            <div class="card-body">        
+                <div class="d-flex">
+                    <div class="col-md-6">
+                        {{ form_row(form.title) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.code) }}
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div class="col-md-4">
+                        {{ form_row(form.price) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_row(form.costPrice) }}
+                    </div>
+                    <div class="col-md-4">
+                        {{ form_row(form.specialPrice) }}
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div class="col-md-3">
+                        {{ form_row(form.quantity) }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ form_row(form.productionDate) }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ form_row(form.category) }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ form_row(form.subCategory) }}
+                    </div>
+                </div>
+                <div>
+                    {{ form_row(form.description) }}
+                </div>
+                <div class="d-flex">
+                    <div class="col-md-6">
+                        {{ form_row(form.productStatus) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.images) }}
+                    </div>
+                </div>
+                <div class="d-flex">
+                    {{ form_row(form.isvisible) }} 
+                    <p>Produit visivle sur le site</p> 
+                </div>
+            <button type="submit" class="btn adminBtn btn-block">Enregistrer</button>
+            {{ form_end(form) }}
+
+        </div>
+    </div>>
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+    
+tinymce.init({
+    selector: '#article_description',
+    height: 400,
+    toolbar_mode: 'floating',
+    language: 'fr_FR',
+    toolbar: 'styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
+
+});
+    </script>
+{% endblock %}

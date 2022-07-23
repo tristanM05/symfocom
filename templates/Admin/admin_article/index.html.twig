@@ -1,0 +1,80 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Hello AdminCategoryController!{% endblock %}
+
+{% block body %}
+<div class="panel_main">
+    <div id="article_main_title">
+        <h1 class="titlePanel">Gestion de vos articles</h1>
+        <p class="mb-5">Ici retrouvez tous les articles de votre shop !</p>
+    </div>
+    <div id="article_main_content">
+        <div id="article_main_content_add" class="mb-5">
+            <a href="{{ path('admin_article_new') }}" class="adminBtn">Ajoutez un nouvel article</a>
+        </div>
+        <div class="article_main_content_list">
+            <table class="table table-hover text-center">
+                <thead class="text-center">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Code</th>
+                        <th>Prix de vente</th>
+                        <th>Prix d'achat</th>
+                        <th>Prix spécial</th>
+                        <th>quantité</th>
+                        <th>Catégorie</th>
+                        <th>Sous-catégrie</th>
+                        <th>Status</th>
+                        <th>visible</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for a in articles %}
+                    <tr>
+                        <td>{{ a.title }}</td>
+                        {% if a.code == null %}
+                            <td>NULL</td>
+                       {% else %}
+                            <td>{{ a.code }}</td>
+                        {% endif %}
+                        <td>{{ a.price }}</td>
+                        {% if a.costPrice == null %}
+                            <td>NULL</td>
+                        {% else %}
+                            <td>{{ a.costPrice }}</td>
+                        {% endif %}
+                        {% if a.specialPrice == null %}
+                            <td>NULL</td>
+                        {% else %}
+                            <td>{{ a.specialPrice }}</td>
+                        {% endif %}
+                        <td>{{ a.quantity }}</td>
+                        <td>
+                        {% for categorie in a.category %}
+                            {{ categorie.title }}
+                        {% endfor %}
+                        </td>
+                        {% if a.subCategory == null %}
+                            <td>NULL</td>
+                        {% else %}
+                            <td>{{ a.subCategory.title }}</td>
+                        {% endif %}
+                        <td>{{ a.title }}</td>
+                        {% if a.isVisible == 1 %}
+                            <td>visible</td>
+                        {% else %}
+                            <td>non visible</td>
+                        {% endif %}
+                        <td>
+                            <a href="{{ path('admin_article_edit', { 'id': a.id }) }}"><i class="fa-solid fa-pen-clip editIcon"></i></a>
+                            <a href=""><i class="fa-solid fa-trash-can deleteIcon"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

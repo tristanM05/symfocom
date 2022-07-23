@@ -5,12 +5,22 @@
 {% block body %}
 <div class="panel_main">
     {% if editMode %}
-        <h1 class="titlePanel">Modification de la sous-catégorie ""</h1>
+        <h1 class="titlePanel">Modification de la sous-catégorie "{{subCategory.title}}"</h1>
         <p class="mb-5">Création ou modificartion d'une sous-catégorie.</p>
-        <a href="" class="adminBtn">Ajoutez une sous-catégorie</a>
+        <div class="d-flex">
+            <a href="" class="adminBtn">Ajoutez une sous-catégorie</a>
+            <div class="ligneVie">
+                <a href="{{path('admin_category')}}">catégories</a>
+                <p class="separateur_ligneVie">></p>
+                <a href="{{path('admin_category_edit', { 'id': subCategory.category.id })}}"> {{subCategory.category.title}}</a>
+                <p class="separateur_ligneVie">></p>
+                <p>{{subCategory.title}}</p>
+            </div>
+        </div>
     {% else %}
         <h1 class="titlePanel">Ajout d'une nouvelle sous-catégorie</h1>
         <p class="mb-5">Création ou modificartion d'une sous-catégorie.</p>
+        <a href="{{path('admin_category')}}" class="adminBtn">Retour au catégories</a>
     {% endif %}
     <div class="divAddForm">
         <div class="card cardAddEdit">
@@ -23,5 +33,61 @@
 
         </div>
     </div>
+    {% if editMode %}
+        <h1 class="titlePanel text-center mt-5">Articles liées a la sous-catégorie "{{subCategory.title}}"</h1>
+        <div class="divAddForm">
+            <div class="card cardAddEdit">
+                <table class="table table-hover text-center">
+                    <thead class="text-center">
+                        <tr>
+                            <th>Nom</th>
+                            <th>Code</th>
+                            <th>Prix de vente</th>
+                            <th>Prix d'achat</th>
+                            <th>Prix spécial</th>
+                            <th>quantité</th>
+                            <th>Status</th>
+                            <th>visible</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for a in subCategory.articles %}
+                        <tr>
+                            <td>{{ a.title }}</td>
+                            {% if a.code == null %}
+                                <td>NULL</td>
+                        {% else %}
+                                <td>{{ a.code }}</td>
+                            {% endif %}
+                            <td>{{ a.price }}</td>
+                            {% if a.costPrice == null %}
+                                <td>NULL</td>
+                            {% else %}
+                                <td>{{ a.costPrice }}</td>
+                            {% endif %}
+                            {% if a.specialPrice == null %}
+                                <td>NULL</td>
+                            {% else %}
+                                <td>{{ a.specialPrice }}</td>
+                            {% endif %}
+                            <td>{{ a.quantity }}</td>
+                            <td>{{ a.title }}</td>
+                            {% if a.isVisible == 1 %}
+                                <td>visible</td>
+                            {% else %}
+                                <td>non visible</td>
+                            {% endif %}
+                            <td>
+                                <a href="{{ path('admin_article_edit', { 'id': a.id }) }}"><i class="fa-solid fa-pen-clip editIcon"></i></a>
+                                <a href=""><i class="fa-solid fa-trash-can deleteIcon"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

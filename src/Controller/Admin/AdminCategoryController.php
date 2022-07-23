@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Category;
 use App\Form\CategoryType;
+use App\Repository\ArticlesRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\SubCategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,12 +30,13 @@ class AdminCategoryController extends AbstractController
      * @Route("/admin/category/new", name="admin_category_new")
      * @Route("/admin/category/edit/{id}", name="admin_category_edit")
      */
-    public function addEditCategory(EntityManagerInterface $manager, Request $req, Category $category = null, SubCategoryRepository $sub_repo){
+    public function addEditCategory(EntityManagerInterface $manager, Request $req, Category $category = null, SubCategoryRepository $sub_repo, ArticlesRepository $repo_article){
 
         if(!$category){
             $category = new Category();
         }
         $subCategory = $sub_repo->findBy(['category' => $category]);
+        $idCategory = $category->getId();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($req);
         if($form->isSubmitted() && $form->isValid()){
